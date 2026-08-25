@@ -1,0 +1,19 @@
+[package]
+name = "Server"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.104"
+axum = "0.8.9"
+dotenvy = "0.15.7"
+protocol = {
+    git = "https://github.com/Vivre-Card-Framework/Protocol.git",
+    rev = "d6a8fc8"
+}
+serde = {version="1.0.229",features = ["derive"]}
+serde_json = "1"
+tokio = {version="1.53.1",features = ["full"]}
+tower-http = { version = "0.7.0", features = ["trace"] }
+tracing = "0.1.44"
+tracing-subscriber = "0.3.23"
