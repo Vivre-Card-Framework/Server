@@ -1,4 +1,5 @@
 pub mod router;
+pub mod storage;
 
 use std::env;
 use tokio::net::TcpListener;
@@ -31,6 +32,9 @@ async fn main() -> anyhow::Result<()> {
         .with_max_level(parse_log_level())
         .finish();
     tracing::subscriber::set_global_default(subscriber)?;
+
+    // storage init
+    storage::init().await?;
 
     let listener = TcpListener::bind(env::var("listener")?).await?;
     tracing::info!(
