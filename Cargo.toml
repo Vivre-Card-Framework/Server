@@ -6,8 +6,10 @@ edition = "2024"
 [dependencies]
 anyhow = "1.0.104"
 axum = "0.8.9"
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
 dotenvy = "0.15.7"
 etcd-client = "0.20.0"
+flate2 = "1"
 protocol = {
     git = "https://github.com/Vivre-Card-Framework/Protocol.git",
     rev = "d6a8fc8"

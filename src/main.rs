@@ -1,6 +1,8 @@
+pub mod credential;
 pub mod router;
 pub mod storage;
 
+use anyhow::Context;
 use std::env;
 use tokio::net::TcpListener;
 use tracing::Level;
@@ -32,6 +34,12 @@ async fn main() -> anyhow::Result<()> {
         .with_max_level(parse_log_level())
         .finish();
     tracing::subscriber::set_global_default(subscriber)?;
+
+    // load credential
+    let credential_file = env::args()
+        .nth(1)
+        .context("missing credential file argument")?;
+    credential::load(credential_file)?;
 
     // storage init
     storage::init().await?;
